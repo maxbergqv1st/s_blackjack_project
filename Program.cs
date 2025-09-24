@@ -2,6 +2,7 @@
 
 bool running = true;
 
+
 while(running)
 {
       Console.Clear();
@@ -19,18 +20,29 @@ while(running)
             switch(menuChoice)
             {
             case MenuOption.StartGame : 
-                  Game game = new Game();
-                  game.Start();
+                  DeckOfCards all_cards_in_deck = new DeckOfCards();
+                  all_cards_in_deck.AllCardsInDeck();
+
+                  Console.Clear();
+                  Console.WriteLine("mode : play");
+                        Console.WriteLine("Dealer");
+                  all_cards_in_deck.TwoRandomCardFromDeck();
+                  Console.WriteLine("Player");
+
+                  all_cards_in_deck.TwoRandomCardFromDeck();
+                  
+
+                  Console.ReadLine();
+                  
+                  
             break;
             case MenuOption.ShowRules : 
                   Console.Clear();
                   Console.WriteLine("Rules..");
-                  
                   Console.ReadLine();
             break;  
+
             case MenuOption.ShowDeck : 
-                  DeckOfCards deck = new DeckOfCards();
-                  deck.AllCardsInDeck();
                   Console.ReadLine();
             break;  
             case MenuOption.Exit : 

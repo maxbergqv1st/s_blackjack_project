@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 namespace App;
 
 public class DeckOfCards
@@ -8,8 +10,11 @@ public List<string> deck_list = new List<string>();
 
 public Random rnd = new Random();
 
+public bool second_round = false;
+
       public void AllCardsInDeck()
       {
+            deck_list.Clear();
             foreach(var suit in suit_cards)
             {
                   foreach(var rank in rank_cards)
@@ -17,31 +22,70 @@ public Random rnd = new Random();
                         deck_list.Add(suit + rank);                        
                   }
             }
-            foreach(var card in deck_list)
-                        {
-                              Console.WriteLine(card);
-                        }
       }
-
-      public void OneRandomCardFromDeck()
+      public string OneRandomCardFromDeck()
       {
-            foreach(var suit in suit_cards)
+            if (deck_list.Count == 0)
             {
-                  foreach(var rank in rank_cards)
-                  {
-                        deck_list.Add(suit + rank);                        
-                  }
+                  Console.WriteLine("deck of cards is empty");
             }
-            if(deck_list.Count == 0)
+            int RandomIndex = rnd.Next(deck_list.Count);
+            string RandomCard = deck_list[RandomIndex];
+            deck_list.RemoveAt(RandomIndex);
+            return RandomCard;
+      }
+      public void TwoRandomCardFromDeck()
+
+      {
+             string card1 = OneRandomCardFromDeck();
+            string card2 = OneRandomCardFromDeck();
+            //             ╭────────────────────────╮
+            // │                        │
+            // │     Hej, världen!       │
+            // │                        │
+            // ╰────────────────────────╯
+            Console.WriteLine("╭────────────────────────╮─────────╮");
+            Console.WriteLine($"│                      {card1}│       {card2}│");
+            Console.WriteLine("│                        │         │");
+            Console.WriteLine("│                        │         │");
+            Console.WriteLine("│                        │         │");
+            Console.WriteLine("│                        │         │");
+            Console.WriteLine("│                        │         │");
+            Console.WriteLine("│                        │         │");
+            Console.WriteLine("│                        │         │");
+            Console.WriteLine("│                        │         │");
+            Console.WriteLine("│                        │         │");
+            Console.WriteLine("│                        │         │");
+            Console.WriteLine($"│{card1}                      │         │");
+            Console.WriteLine("╰────────────────────────╯─────────╯");
+
+           
+      }
+      public void SecondRandomCardFromDeck()
+      {
+            if (!second_round)
             {
-                  Console.WriteLine("hello");
-            }
-            else
-            {
+                  Console.ReadLine();
+
+                  second_round = true;
+
                   int RandomIndex = rnd.Next(deck_list.Count);
                   string RandomCard = deck_list[RandomIndex];
+                  deck_list.RemoveAt(RandomIndex);
                   Console.WriteLine(RandomCard);
             }
-            
       }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
